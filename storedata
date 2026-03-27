@@ -1,0 +1,24 @@
+# Cloud Computing Program: Store data in Firebase
+
+import firebase_admin
+from firebase_admin import credentials, db
+
+# Initialize Firebase (download JSON key from Firebase console)
+cred = credentials.Certificate("serviceAccountKey.json")
+
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://your-database-url.firebaseio.com/'
+})
+
+# Data to store
+data = {
+    "name": "Amit",
+    "course": "B.Tech",
+    "marks": 85
+}
+
+# Store data in cloud
+ref = db.reference("students")
+ref.push(data)
+
+print("Data stored successfully in cloud database!")
